@@ -55,3 +55,16 @@ jobs:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
           model_name:  ${{ steps.aml_registermodel.outputs.model_name }}
           model_version: ${{ steps.aml_registermodel.outputs.model_version }}
+
+    # Cliv2 
+    - name: Az Install
+      run: |
+         bash az extension list
+         bash az extension add -n ml
+    
+    # Deploy
+    - name: Az deploy
+      run: |
+         bash az extension list
+         bash az extension add -n ml
+    
