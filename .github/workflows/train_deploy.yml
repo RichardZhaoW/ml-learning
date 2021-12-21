@@ -65,6 +65,5 @@ jobs:
     # Deploy
     - name: Az deploy
       run: |
-         bash az extension list
-         bash az extension add -n ml
+         bash az login -u zhwei@microsoft.com -u ${{ secrets.AZURE_CREDENTIALS }}
     
