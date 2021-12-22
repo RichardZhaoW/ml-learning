@@ -16,8 +16,7 @@ jobs:
     # Login
     - name: Az login
       run: |
-         bash az account set -s 4aaa645c-5ae2-4ae9-a17a-84b9023bc56a
-         bash az login --service-principal -u ${{ secrets.SP_ID }} -p ${{ secrets.SP_SECRET }}
+         az login --service-principal -u ${{ secrets.SP_ID }} -p ${{ secrets.SP_SECRET }}
     
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Check Out Repository
