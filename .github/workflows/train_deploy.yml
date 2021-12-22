@@ -71,5 +71,5 @@ jobs:
     # Deploy
     - name: Az deploy
       run: |
-         bash az login --service-principal -u ${{ secrets.SP_ID }} -p ${{ secrets.SP_SECRET }}
+         az ml online-endpoint create  --resource-group amlarc-staging-test --workspace-name amlarc-staging-ws --subscription 4aaa645c-5ae2-4ae9-a17a-84b9023bc56a --file code/deploy/endpoint.yaml
     
