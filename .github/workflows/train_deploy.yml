@@ -12,16 +12,17 @@ jobs:
   train:
     runs-on: ubuntu-latest
     steps:
+    
+    # Login
+    - name: Az login
+      run: |
+         bash az account set -s 4aaa645c-5ae2-4ae9-a17a-84b9023bc56a
+         bash az login --service-principal -u ${{ secrets.SP_ID }} -p ${{ secrets.SP_SECRET }}
+    
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Check Out Repository
       id: checkout_repository
       uses: actions/checkout@v2
-       
-    # Login
-    - name: Az login
-      run: |
-         bash az account set -s ${{ secrets.SUBSCRIPTION }}
-         bash az login --service-principal -u ${{ secrets.SP_ID }} -p ${{ secrets.SP_SECRET }}
     
     # Connect or Create the Azure Machine Learning Workspace
     - name: Connect/Create Azure Machine Learning Workspace
