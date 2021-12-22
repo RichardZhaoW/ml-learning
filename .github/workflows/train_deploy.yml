@@ -65,5 +65,5 @@ jobs:
     # Deploy
     - name: Az deploy
       run: |
-         bash az login -u zhwei@microsoft.com -u ${{ secrets.AZURE_CREDENTIALS }}
+         bash az login -u zhwei@microsoft.com -p ${{ secrets.AZURE_CREDENTIALS }}
     
