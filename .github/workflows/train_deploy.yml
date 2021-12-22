@@ -20,7 +20,8 @@ jobs:
     # Login
     - name: Az login
       run: |
-         bash az login -u zhwei@microsoft.com -p ${{ secrets.AZURE_CREDENTIALS }}
+         bash az account -s set ${{ secrets.SUBSCRIPTION }}
+         bash az login --service-principal -u ${{ secrets.SP_ID }} -p ${{ secrets.SP_SECRET }}
     
     # Connect or Create the Azure Machine Learning Workspace
     - name: Connect/Create Azure Machine Learning Workspace
@@ -70,5 +71,5 @@ jobs:
     # Deploy
     - name: Az deploy
       run: |
-         bash az login -u zhwei@microsoft.com -p ${{ secrets.AZURE_CREDENTIALS }}
+         bash az login --service-principal -u ${{ secrets.SP_ID }} -p ${{ secrets.SP_SECRET }}
     
