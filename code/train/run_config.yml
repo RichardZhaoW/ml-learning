@@ -18,9 +18,9 @@ nodeCount: 1
 # Environment details.
 environment:
   # Environment name
-  name: data_gen_environment
+  name: e2e_smoke_env
   # Environment version
-  version:
+  version: 25
   # Environment variables set for the run.
   environmentVariables:
     EXAMPLE_ENV_VAR: EXAMPLE_VALUE
@@ -41,7 +41,7 @@ environment:
     # Set True to perform this run inside a Docker container.
     enabled: true
     # Base image used for Docker-based runs. Mutually exclusive with base_dockerfile.
-    baseImage: mcr.microsoft.com/azureml/base:intelmpi2018.3-ubuntu16.04
+    baseImage: mcr.microsoft.com/azureml/openmpi3.1.2-ubuntu18.04:latest
     # Base Dockerfile used for Docker-based runs. Mutually exclusive with base_image
     baseDockerfile:
     # Set False if necessary to work around shared volume bugs.
