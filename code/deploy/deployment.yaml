@@ -1,0 +1,46 @@
+name: blue
+type: kubernetes
+endpoint_name: mlops-endpoint
+app_insights_enabled: true
+model: azureml:model-e2e-simple:7
+#  name: model-e2e-simple
+#  version: 7
+#  model_uri: ./sklearn_regression_model/model/sklearn_regression_model.pkl
+code_configuration:
+  code:
+    name: "score"
+    version: 7
+    local_path: code/deploy
+  scoring_script: score.py
+environment:
+  name: e2e_smoke_env
+  version: 25
+  image: mcr.microsoft.com/azureml/openmpi3.1.2-ubuntu18.04:latest
+  #conda_file: ./sklearn_regression_model/environment/conda.yml
+request_settings:
+  request_timeout_ms: 3000
+  max_concurrent_requests_per_instance: 1
+  max_queue_wait_ms: 3000
+resources:
+  requests:
+    cpu: "10m"
+    memory: "10Mi"
+  limits:
+    cpu: "0.2"
+    memory: "200Mi"
+liveness_probe:
+  initial_delay: 10
+  period: 10
+  timeout: 10
+  success_threshold: 1
+  failure_threshold: 1
+readiness_probe:
+  initial_delay: 9
+  period: 8
+  timeout: 7
+  success_threshold: 1
+  failure_threshold: 1
+tags:
+  tag1: deployment-tag1-value
+properties:
+  prop1: deployment-prop1-value
