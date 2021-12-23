@@ -18,9 +18,9 @@ nodeCount: 1
 # Environment details.
 environment:
   # Environment name
-  name: new_env
+  name: e2e_smoke_env
   # Environment version
-  version: 1
+  version: 25
   # Environment variables set for the run.
   environmentVariables:
     EXAMPLE_ENV_VAR: EXAMPLE_VALUE
