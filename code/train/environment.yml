@@ -4,18 +4,10 @@
 name: training_env
 dependencies:
   - python=3.6.2
-  - numpy
-  - pandas
-  - pip=21.1.1
-  - scikit-learn==0.24
-  - scipy
+  - scikit-learn=0.23.2
+  - pandas=1.1.5
+  - matplotlib=3.3.3
   - pip:
-      - azureml-defaults
-      - 'inference-schema[numpy-support]'
-      - joblib
-      - numpy
-      - scikit-learn==0.19.1
-      - scipy
-      - matplotlib
+      - azureml-defaults==1.19.0
 channels:
   - conda-forge
