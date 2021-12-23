@@ -10,7 +10,7 @@ code_configuration:
   code:
     name: "score"
     version: 7
-    local_path: code/deploy
+    local_path: .
   scoring_script: score.py
 environment:
   name: e2e_smoke_env
