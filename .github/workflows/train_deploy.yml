@@ -74,5 +74,5 @@ jobs:
     - name: Az deploy
       run: |
          az ml online-endpoint create  --resource-group amlarc-staging-test --workspace-name amlarc-staging-ws --subscription 4aaa645c-5ae2-4ae9-a17a-84b9023bc56a --file code/deploy/endpoint.yaml
-         az ml online-deployment create --resource-group amlarc-staging-test --workspace-name amlarc-staging-ws --subscription 4aaa645c-5ae2-4ae9-a17a-84b9023bc56a -n blue --file code/deploy/deployment.yaml
+         #az ml online-deployment create --resource-group amlarc-staging-test --workspace-name amlarc-staging-ws --subscription 4aaa645c-5ae2-4ae9-a17a-84b9023bc56a -n blue --file code/deploy/deployment.yaml
     
