@@ -8,15 +8,15 @@ model: azureml:model-e2e-simple:7
 #  model_uri: ./sklearn_regression_model/model/sklearn_regression_model.pkl
 code_configuration:
   code:
-    name: "score"
-    version: 7
+    name: newscore
+    version: 1
     local_path: .
   scoring_script: score.py
 environment:
-  name: e2e_smoke_env
-  version: 25
+  name: mlops_env
+  version: 1
   image: mcr.microsoft.com/azureml/openmpi3.1.2-ubuntu18.04:latest
-  #conda_file: ./sklearn_regression_model/environment/conda.yml
+  conda_file: conda.yaml
 request_settings:
   request_timeout_ms: 3000
   max_concurrent_requests_per_instance: 1
