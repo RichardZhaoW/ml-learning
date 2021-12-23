@@ -65,11 +65,14 @@ jobs:
     # Cliv2 
     - name: Az Install
       run: |
-         bash az extension list
-         bash az extension add -n ml
+         az extension list
+         az extension add -n ml
+         echo ${{ steps.aml_registermodel.outputs.model_name }}
+         echo ${{ steps.aml_registermodel.outputs.model_version }}
     
     # Deploy
     - name: Az deploy
       run: |
          az ml online-endpoint create  --resource-group amlarc-staging-test --workspace-name amlarc-staging-ws --subscription 4aaa645c-5ae2-4ae9-a17a-84b9023bc56a --file code/deploy/endpoint.yaml
+         az ml online-deployment create --resource-group amlarc-staging-test --workspace-name amlarc-staging-ws --subscription 4aaa645c-5ae2-4ae9-a17a-84b9023bc56a -n blue --file code/deploy/deployment.yaml
     
