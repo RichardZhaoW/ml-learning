@@ -17,6 +17,7 @@ jobs:
     - name: Az login
       run: |
          az login --service-principal --username 93964124-e148-47d5-983d-226f7304406f --password iplyGuuZJHcL0J~_X33neRHs1r1..ETkQX --tenant 72f988bf-86f1-41af-91ab-2d7cd011db47
+         az login --service-principal --username ${{secrets.SP_ID}} --password ${{secrets.SP_SECRET}} --tenant ${{secrets.TENANT}}  
     
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Check Out Repository
