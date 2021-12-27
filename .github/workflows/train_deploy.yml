@@ -16,7 +16,6 @@ jobs:
     # Login
     - name: Az login
       run: |
-         az login --service-principal --username 93964124-e148-47d5-983d-226f7304406f --password iplyGuuZJHcL0J~_X33neRHs1r1..ETkQX --tenant 72f988bf-86f1-41af-91ab-2d7cd011db47
          az login --service-principal --username ${{secrets.SP_ID}} --password ${{secrets.SP_SECRET}} --tenant ${{secrets.TENANT}}  
     
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -55,13 +54,13 @@ jobs:
           experiment_name: ${{ steps.aml_run.outputs.experiment_name }}
 
     # Deploy model in Azure Machine Learning to ACI
-    #- name: Deploy model
-    #  id: aml_deploy
-    #  uses: Azure/aml-deploy@v1
-    #  with:
-    #      azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
-    #      model_name:  ${{ steps.aml_registermodel.outputs.model_name }}
-    #      model_version: ${{ steps.aml_registermodel.outputs.model_version }}
+    - name: Deploy model
+      id: aml_deploy
+      uses: Azure/aml-deploy@v1
+      with:
+          azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+          model_name:  ${{ steps.aml_registermodel.outputs.model_name }}
+          model_version: ${{ steps.aml_registermodel.outputs.model_version }}
 
     # Cliv2 
     - name: Az Install
@@ -74,6 +73,6 @@ jobs:
     # Deploy
     - name: Az deploy
       run: |
-         az ml online-endpoint create  --resource-group amlarc-staging-test --workspace-name amlarc-staging-ws --subscription 4aaa645c-5ae2-4ae9-a17a-84b9023bc56a --file code/deploy/endpoint.yaml
-         az ml online-deployment create  --resource-group amlarc-staging-test --workspace-name amlarc-staging-ws --subscription 4aaa645c-5ae2-4ae9-a17a-84b9023bc56a -n blue --file code/deploy/deployment.yaml --set model=azureml:ml-learning-master:3
+         az ml online-endpoint create  --resource-group amlarc-staging-test --workspace-name amlarc-staging-ws --subscription ${{SUBSCRIPTION}} --file code/deploy/endpoint.yaml
+         az ml online-deployment create  --resource-group amlarc-staging-test --workspace-name amlarc-staging-ws --subscription ${{SUBSCRIPTION}} -n blue --file code/deploy/deployment.yaml --set model=azureml:${{steps.aml_registermodel.outputs.model_name}}:${{steps.aml_registermodel.outputs.model_version}}
     
