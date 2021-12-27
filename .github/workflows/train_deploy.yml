@@ -73,6 +73,6 @@ jobs:
     # Deploy
     - name: Az deploy
       run: |
-         az ml online-endpoint create  --resource-group amlarc-staging-test --workspace-name amlarc-staging-ws --subscription ${{SUBSCRIPTION}} --file code/deploy/endpoint.yaml
-         az ml online-deployment create  --resource-group amlarc-staging-test --workspace-name amlarc-staging-ws --subscription ${{SUBSCRIPTION}} -n blue --file code/deploy/deployment.yaml --set model=azureml:${{steps.aml_registermodel.outputs.model_name}}:${{steps.aml_registermodel.outputs.model_version}}
+         az ml online-endpoint create  --resource-group amlarc-staging-test --workspace-name amlarc-staging-ws --subscription ${{secrets.SUBSCRIPTION}} --file code/deploy/endpoint.yaml
+         az ml online-deployment create  --resource-group amlarc-staging-test --workspace-name amlarc-staging-ws --subscription ${{secrets.SUBSCRIPTION}} -n blue --file code/deploy/deployment.yaml --set model=azureml:${{steps.aml_registermodel.outputs.model_name}}:${{steps.aml_registermodel.outputs.model_version}}
     
