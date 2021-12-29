@@ -13,11 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-    # Login
-    - name: Az login
-      run: |
-         az login --service-principal --username ${{secrets.SP_ID}} --password ${{secrets.SP_SECRET}} --tenant ${{secrets.TENANT}}  
-    
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Check Out Repository
       id: checkout_repository
@@ -61,14 +56,12 @@ jobs:
     #      azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
     #      model_name:  ${{ steps.aml_registermodel.outputs.model_name }}
     #      model_version: ${{ steps.aml_registermodel.outputs.model_version }}
-
-    # Cliv2 
-    - name: Az Install
+    
+    # Login
+    - name: Az login
       run: |
-         az extension list
+         az login --service-principal --username ${{secrets.SP_ID}} --password ${{secrets.SP_SECRET}} --tenant ${{secrets.TENANT}}
          az extension add -n ml
-         echo ${{ steps.aml_registermodel.outputs.model_name }}
-         echo ${{ steps.aml_registermodel.outputs.model_version }}
     
     # Deploy
     - name: Az deploy
